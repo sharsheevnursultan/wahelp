@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    MobileAds.instance.initialize();
     return MaterialApp(
       title: 'My App',
       home: MyHomePage(),
@@ -21,11 +29,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   dynamic myController = TextEditingController(text: '');
 
+  get adText => 'www.google.com';
+
   @override
   void dispose() {
     myController.dispose();
     super.dispose();
   }
+  @override
+  void initState() {
+    myBanner.load();
+    super.initState();
+  }
+
+  final BannerAd myBanner = BannerAd(
+      size: (AdSize.banner),
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      listener: BannerAdListener(),
+      request: AdRequest());
+
 
   dynamic myColor = 0xFF25D366;
 
@@ -35,22 +57,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text(
           'Quick Chat for WhatsApp',
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
         ),
-        centerTitle: false,
+        centerTitle: true,
         backgroundColor: Color(myColor),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+            // const Padding(
+            //   padding: EdgeInsets.symmetric(vertical: 20),
+            // ),
+            Container(
+              width: myBanner.size.width.toDouble(),
+              height: myBanner.size.height.toDouble(),
+              alignment: Alignment.center,
+              child: AdWidget(ad: myBanner),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 20),
                 onSubmitted: (value) {
                   setState(() {
                     myController.text = value;
@@ -89,12 +117,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     minimumSize: const Size.fromHeight(50), // foreground
                   ),
                   onPressed: () {
-                    launch('https://wa.me/' + myController.text);
+                    launch(
+                        '${'https://wa.me/' + myController.text}?text=$adText');
                     setState(() {});
                   },
                   child: const Text(
                     'CHAT',
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),

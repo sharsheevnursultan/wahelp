@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final BannerAd myBanner = BannerAd(
-      size: (AdSize.banner),
+      size: (AdSize.mediumRectangle),
       adUnitId: 'ca-app-pub-3940256099942544/6300978111',
       listener: BannerAdListener(),
       request: AdRequest());
@@ -74,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               height: myBanner.size.height.toDouble(),
               alignment: Alignment.center,
               child: AdWidget(ad: myBanner),
+            ),
+            const SizedBox(
+              height: 16,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

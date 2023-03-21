@@ -42,6 +42,7 @@ dependencies:
 
 flutter_icons:
   image_path: 'assets/images/icon.png'
+  image_path_ios: 'assets/images/apple/icon.jpg'
   remove_alpha_ios: true
   android: true
   ios: true

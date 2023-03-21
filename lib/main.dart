@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final BannerAd myBanner = BannerAd(
       size: (AdSize.mediumRectangle),
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: 'ca-app-pub-2550588570628296/3236992064',
       listener: BannerAdListener(),
       request: AdRequest());
 
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 onSubmitted: (value) {
                   setState(() {
                     myController.text = value;

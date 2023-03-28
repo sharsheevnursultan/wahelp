@@ -44,6 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final BannerAd myBanner = BannerAd(
       size: (AdSize.mediumRectangle),
+      // android admob
+      // adUnitId: 'ca-app-pub-2550588570628296/3236992064',
+      // ios admob
       adUnitId: 'ca-app-pub-2550588570628296/6873796817',
       listener: BannerAdListener(),
       request: AdRequest());

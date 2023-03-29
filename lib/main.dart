@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   dynamic myController = TextEditingController(text: '');
 
-  get adText => 'https://taplink.cc/nomaddev';
+  // get adText => 'https://taplink.cc/nomaddev';
 
   @override
   void dispose() {
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Quick Chat for WhatsApp',
+          'Quick Chat Tool',
           style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
         ),
         centerTitle: true,
@@ -102,7 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    //<-- SEE HERE
                     borderSide: BorderSide(width: 2, color: Color(myColor)),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -125,7 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   onPressed: () {
                     launch(
-                        '${'https://wa.me/' + myController.text}?text=$adText');
+                        // '${'https://wa.me/' + myController.text}?text=$adText');
+                    'https://wa.me/' + myController.text);
                     setState(() {});
                   },
                   child: const Text(

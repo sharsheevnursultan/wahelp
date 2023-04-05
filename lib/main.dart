@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     myController.dispose();
     super.dispose();
   }
+
   @override
   void initState() {
     myBanner.load();
@@ -56,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     launch(
                         // '${'https://wa.me/' + myController.text}?text=$adText');
-                    'https://wa.me/' + myController.text);
+                        'https://wa.me/' + myController.text);
                     setState(() {});
                   },
                   child: const Text(
